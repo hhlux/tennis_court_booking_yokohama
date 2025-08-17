@@ -43,6 +43,7 @@ class BasePage:
             if platform.system() != 'Darwin':  # For Cloud Run
                 options.binary_location = '/usr/bin/google-chrome'
                 options.add_argument('--headless=new')
+                options.add_argument("--start-maximized")
             # options.add_experimental_option("prefs", {"download.default_directory": str(const.DOWNLOAD_FOLDER.absolute())})
             BasePage.driver = webdriver.Chrome(options=options)
             BasePage.driver.maximize_window()
