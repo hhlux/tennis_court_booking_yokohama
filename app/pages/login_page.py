@@ -11,5 +11,5 @@ class LoginPage(BasePage):
         username_input = self.driver.find_element(By.NAME, 'UserLoginInputModel.Id')
         password_input = self.driver.find_element(By.NAME, 'UserLoginInputModel.Password')
         username_input.send_keys('02075758')
-        password_input.send_keys('Uxxnxtd10')
+        password_input.send_keys('841010Lkm')
         self.driver.find_element(By.CSS_SELECTOR, 'button[aria-label="ログイン"]').click()
