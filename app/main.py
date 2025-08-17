@@ -1,5 +1,3 @@
-import time
-
 from pages.login_page import LoginPage
 from pages.park_selection_page import ParkSelectionPage
 from pages.vacancy_by_court_page import VacancyByCourtPage
