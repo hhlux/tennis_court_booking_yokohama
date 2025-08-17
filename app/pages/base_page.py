@@ -1,11 +1,14 @@
 import platform
 import random
+from datetime import datetime
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
 
+import const
+from utils.cloud_storage_util import CloudStorageUtil
 
 
 class BasePage:
@@ -48,3 +51,9 @@ class BasePage:
             BasePage.wait_long = WebDriverWait(BasePage.driver, 60)
             BasePage.wait_super_long = WebDriverWait(BasePage.driver, 600)
 
+    def take_screenshot_and_upload_to_cloud_storage(self) -> str:
+        data = self.driver.get_screenshot_as_png()
+        page_title = '_'.join(self.driver.title.split())
+        file_name = f'{page_title}_{datetime.now().strftime("%Y%m%d_%H%M%S")}.png'
+        CloudStorageUtil.upload_blob_from_memory(const.BUCKET_NAME, data, file_name)
+        return file_name

@@ -1,3 +1,6 @@
+from selenium.common import WebDriverException
+
+from pages.base_page import BasePage
 from pages.login_page import LoginPage
 from pages.park_selection_page import ParkSelectionPage
 from pages.vacancy_by_court_page import VacancyByCourtPage
@@ -10,43 +13,49 @@ if __name__ == '__main__':
 
     results = {}
 
-    for park in parks:
-        LoginPage().login()
-        print(park[0])
+    try:
 
-        ParkSelectionPage().go_to_park(park[0])
+        for park in parks:
+            LoginPage().login()
+            print(park[0])
 
-        vacancy_by_court_page = VacancyByCourtPage()
+            ParkSelectionPage().go_to_park(park[0])
 
-        # days_count = vacancy_by_court_page.select_one_month()
-        days_count = 7
-
-        result = []
-
-        # 按天数遍历，每一天为一列，也即遍历列（日期是从第3列开始）
-        for i in range(3, 3 + days_count):
             vacancy_by_court_page = VacancyByCourtPage()
 
-            vacancy_by_court_page.clear_selected()
+            # days_count = vacancy_by_court_page.select_one_month()
+            days_count = 7
 
-            date = vacancy_by_court_page.get_date(i)
+            result = []
 
-            is_any_court_vacant = vacancy_by_court_page.click_next_if_any_court_is_vacant_by_date(i, park[1])
+            # 按天数遍历，每一天为一列，也即遍历列（日期是从第3列开始）
+            for i in range(3, 3 + days_count):
+                vacancy_by_court_page = VacancyByCourtPage()
+
+                vacancy_by_court_page.clear_selected()
+
+                date = vacancy_by_court_page.get_date(i)
+
+                is_any_court_vacant = vacancy_by_court_page.click_next_if_any_court_is_vacant_by_date(i, park[1])
 
 
-            if is_any_court_vacant:
+                if is_any_court_vacant:
 
-                vacancy_by_time_slot_page = VacancyByTimeSlotPage()
+                    vacancy_by_time_slot_page = VacancyByTimeSlotPage()
 
-                if vacancy_by_time_slot_page.is_last_time_slot_vacant_for_any_count():
-                    result.append(date)
+                    if vacancy_by_time_slot_page.is_last_time_slot_vacant_for_any_count():
+                        result.append(date)
 
-                vacancy_by_time_slot_page.return_page()
+                    vacancy_by_time_slot_page.return_page()
 
-        print(result)
+            print(result)
 
-        if result:
-            results[park[0]] = result
+            if result:
+                results[park[0]] = result
+    except WebDriverException as e:
+        print(f"任意 WebDriver 异常: {e}")
+        BasePage().take_screenshot_and_upload_to_cloud_storage()
+        raise e
 
     print(results)
 
