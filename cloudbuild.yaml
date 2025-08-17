@@ -1,6 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'asia-northeast1-docker.pkg.dev/shaped-density-382303/rakuten/rakuten-rms-ad-collector', '.']
+  args: ['build', '-t', 'asia-northeast1-docker.pkg.dev/focus-surfer-158814/rakuten/tennis-court-booking-yokohama', '.']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'asia-northeast1-docker.pkg.dev/shaped-density-382303/rakuten/rakuten-rms-ad-collector']
+  args: ['push', 'asia-northeast1-docker.pkg.dev/focus-surfer-158814/tennis-court-booking-yokohama']
