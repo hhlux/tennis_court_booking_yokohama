@@ -1,9 +1,9 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'asia-northeast1-docker.pkg.dev/focus-surfer-158814/tennis-court-booking-yokohama', '.']
+  args: ['build', '-t', 'asia-northeast1-docker.pkg.dev/focus-surfer-158814/tennis/tennis-court-booking-yokohama', '.']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'asia-northeast1-docker.pkg.dev/focus-surfer-158814/tennis-court-booking-yokohama']
+  args: ['push', 'asia-northeast1-docker.pkg.dev/focus-surfer-158814/tennis/tennis-court-booking-yokohama']
 
 options:
   logging: CLOUD_LOGGING_ONLY
