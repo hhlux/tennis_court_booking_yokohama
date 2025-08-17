@@ -52,8 +52,8 @@ if __name__ == '__main__':
 
             if result:
                 results[park[0]] = result
-    except WebDriverException as e:
-        print(f"任意 WebDriver 异常: {e}")
+    except Exception as e:
+        print(f"任意异常: {e}")
         BasePage().take_screenshot_and_upload_to_cloud_storage()
         raise e
 
