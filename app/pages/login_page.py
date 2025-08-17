@@ -1,8 +1,4 @@
-from datetime import datetime
-from zipfile import ZipFile
-import time
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions
 
 from pages.base_page import BasePage
 
