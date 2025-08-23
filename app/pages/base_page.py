@@ -38,15 +38,22 @@ class BasePage:
             options.add_argument('--disable-gpu')
             options.add_argument("--disable-dev-shm-usage")
             options.add_argument('--disable-application-cache')
-            options.add_argument('window-size=1920,1080')
+            options.add_argument('--window-size=1920,1080')
             options.add_argument('--user-agent=' + random.choice(user_agent_list))
             if platform.system() != 'Darwin':  # For Cloud Run
                 options.binary_location = '/usr/bin/google-chrome'
                 options.add_argument('--headless=new')
-                options.add_argument("--start-maximized")
+                options.add_argument(
+                    '--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 '
+                    '(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
+                )
+                # 锁定缩放与 DPI，避免“看起来小”
+                options.add_argument('--high-dpi-support=1')
+                options.add_argument('--force-device-scale-factor=1')
             # options.add_experimental_option("prefs", {"download.default_directory": str(const.DOWNLOAD_FOLDER.absolute())})
             BasePage.driver = webdriver.Chrome(options=options)
             BasePage.driver.maximize_window()
+            BasePage.driver.set_window_size(1920, 1080)
             # BasePage.driver.implicitly_wait(1)
             BasePage.wait = WebDriverWait(BasePage.driver, 10)
             BasePage.wait_long = WebDriverWait(BasePage.driver, 60)
