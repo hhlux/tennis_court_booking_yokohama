@@ -47,7 +47,7 @@ class BasePage:
             # options.add_experimental_option("prefs", {"download.default_directory": str(const.DOWNLOAD_FOLDER.absolute())})
             BasePage.driver = webdriver.Chrome(options=options)
             BasePage.driver.maximize_window()
-            BasePage.driver.implicitly_wait(1)
+            # BasePage.driver.implicitly_wait(1)
             BasePage.wait = WebDriverWait(BasePage.driver, 10)
             BasePage.wait_long = WebDriverWait(BasePage.driver, 60)
             BasePage.wait_super_long = WebDriverWait(BasePage.driver, 600)

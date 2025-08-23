@@ -23,8 +23,8 @@ if __name__ == '__main__':
 
             vacancy_by_court_page = VacancyByCourtPage()
 
-            # days_count = vacancy_by_court_page.select_one_month()
-            days_count = 7
+            days_count = vacancy_by_court_page.select_one_month()
+            # days_count = 7
 
             result = []
 
