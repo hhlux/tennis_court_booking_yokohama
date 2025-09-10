@@ -12,12 +12,12 @@ class ParkSelectionPage(BasePage):
             '没有找到 “施設名から探す”'
         ).click()
 
-        park_name_input = self.driver.find_element(By.ID, '__BVID__253')
+        park_name_input = self.driver.find_element(By.ID, '__BVID__255')
         park_name_input.clear()
         park_name_input.send_keys(park_name)
 
         # 点击 "検索" 按钮
-        self.driver.find_element(By.CSS_SELECTOR, '#__BVID__251 > div > div.d-flex > button').click()
+        self.driver.find_element(By.CSS_SELECTOR, '#__BVID__253 > div > div.d-flex > button').click()
 
         # 选择检索结果的第一行
         self.wait.until(
